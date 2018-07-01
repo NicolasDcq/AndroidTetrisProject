@@ -10,12 +10,81 @@
     android:paddingTop="10dp"
     tools:context="com.example.ndecrucq.tetris.GameActivity">
 
-    <GridView
+    <LinearLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/grid_game"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:orientation="vertical">
 
+        <GridView
+            android:adjustViewBounds="true"
+            android:id="@+id/grid_game"
+            android:layout_width="wrap_content"
+            android:paddingBottom="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:paddingTop="20dp"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:numColumns="3"
+            android:background="#8c898f"
+            android:verticalSpacing="1dp"
+            android:horizontalSpacing="1dp"
+            android:stretchMode="columnWidth"
+            android:gravity="left"/>
+
+        <LinearLayout
+            android:id="@+id/buttons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/buttons_line1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/left" />
+
+                <ImageButton
+                    android:id="@+id/btn_rotate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/rotate" />
+
+                <ImageButton
+                    android:id="@+id/btn_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/right" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttons_line2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/down" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>

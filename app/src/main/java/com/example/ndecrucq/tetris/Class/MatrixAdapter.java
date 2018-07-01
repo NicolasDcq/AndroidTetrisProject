@@ -1,6 +1,7 @@
 package com.example.ndecrucq.tetris.Class;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -53,15 +54,22 @@ public class MatrixAdapter extends BaseAdapter {
     public View getView(int i, View convertView, ViewGroup viewGroup) {
 
         ImageView imageview;
-        if(convertView == null){
+        if(convertView == null ){
             imageview = new ImageView(m_context);
-            imageview.setLayoutParams(new GridView.LayoutParams(m_width/10, (m_width+240)/20));
+            imageview.setLayoutParams(new GridView.LayoutParams((m_width-300)/10, (m_width+240)/20));
             imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
         }
         else{
             imageview = (ImageView) convertView;
         }
-        imageview.setImageResource(matrixList.get(i));
+        if (matrixList.get(i) != 0) {
+            imageview.setBackgroundColor(matrixList.get(i));
+        }
+        else
+        {
+            imageview.setBackgroundColor(Color.BLACK);
+        }
+
 
         /*View v = View.inflate(context, R.layout.activity_game,null);*/
         return imageview;

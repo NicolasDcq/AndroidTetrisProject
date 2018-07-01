@@ -11,11 +11,11 @@ import com.example.ndecrucq.tetris.Interface.Possible_Movement;
 
 public class Piece_O extends Piece implements Movement,Possible_Movement {
 
-    Piece_O() {
+    public Piece_O() {
         hauteur = 2;
         largeur = 2;
-        matrice = new int[][]{{1,1},{1,1}};
-        pos_i = 1;
+        matrice = new Matrix(new int[][]{{1,1},{1,1}});
+        pos_i = 0;
         pos_j = 5;
         color = Color.YELLOW;
     }
@@ -25,18 +25,4 @@ public class Piece_O extends Piece implements Movement,Possible_Movement {
 
     }
 
-    @Override
-    public void left() {
-
-    }
-
-    @Override
-    public void right() {
-
-    }
-
-    @Override
-    public void down() {
-
-    }
 }

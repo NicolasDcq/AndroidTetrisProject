@@ -5,4 +5,5 @@ package com.example.ndecrucq.tetris.Interface;
  */
 
 public interface Possible_Movement {
+    public void canMove();
 }

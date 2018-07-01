@@ -11,32 +11,29 @@ import com.example.ndecrucq.tetris.Interface.Possible_Movement;
 
 public class Piece_I extends Piece implements Movement,Possible_Movement {
 
-    Piece_I() {
-         hauteur = 1;
-         largeur = 4;
-         matrice = new int[][]{{1,1,1,1},{0,0,0,0}};
-         pos_i = 1;
-         pos_j = 5;
-         color = Color.CYAN;
+    public Piece_I() {
+        hauteur = 1;
+        largeur = 4;
+        matrice = new Matrix(new int[][]{{1,1,1,1}});
+        pos_i = 0;
+        pos_j = 5;
+        color = Color.CYAN;
     }
 
     @Override
     public void rotate() {
+        Matrix matrix_1 = new Matrix(new int[][]{{1,1,1,1}});
+        Matrix matrix_2 = new Matrix(new int[][]{{1},{1},{1},{1}});
 
-    }
+        int temp =  this.hauteur;
+        this.hauteur =  this.largeur;
+        this.largeur = temp;
 
-    @Override
-    public void left() {
-
-    }
-
-    @Override
-    public void right() {
-
-    }
-
-    @Override
-    public void down() {
-
+        if (this.matrice.eq(matrix_1)){
+            this.matrice = matrix_2;
+        }
+        else if(this.matrice.eq(matrix_2)) {
+            this.matrice = matrix_1;
+        }
     }
 }
