@@ -1,13 +1,19 @@
 package com.example.ndecrucq.tetris.Class;
 
+import android.util.Log;
+
 import com.example.ndecrucq.tetris.Interface.Movement;
 import com.example.ndecrucq.tetris.Interface.Possible_Movement;
+
+import java.util.ArrayList;
+
+import static android.R.id.list;
 
 /**
  * Created by ndecrucq on 04/06/18.
  */
 
-public abstract class Piece implements Movement,Possible_Movement {
+public abstract class Piece implements Movement, Possible_Movement {
 
     protected int hauteur;
     protected int largeur;
@@ -18,29 +24,65 @@ public abstract class Piece implements Movement,Possible_Movement {
 
     @Override
     public void left() {
-        if((this.getPos_j()-1) >= 0) {
+        if ((this.getPos_j() - 1) >= 0) {
             this.setPos_j(this.getPos_j() - 1);
         }
     }
 
     @Override
     public void right() {
-        if((this.getPos_j()+ 1) <= ( 10- this.getLargeur())) {
+        if ((this.getPos_j() + 1) <= (10 - this.getLargeur())) {
             this.setPos_j(this.getPos_j() + 1);
         }
     }
 
     @Override
     public void down() {
-        if((this.getPos_i()+ 1) <= (20 - this.getHauteur())){
-            this.setPos_i(this.getPos_i()+1);
+        if ((this.getPos_i() + 1) <= (20 - this.getHauteur())) {
+            this.setPos_i(this.getPos_i() + 1);
         }
     }
 
     @Override
-    public void canMove() {
+    public boolean canMove(ArrayList<Integer> list) {
+        boolean move = true;
+        int j;
+        int i = 0;
+        while (i < hauteur && move) {
+            j=0;
+            while (j < largeur && move) {
+                if (matrice.getValues(i,j) != 0 && !test(i,j)) {
+                    if (((this.getPos_i()) * 10) + this.getPos_j() + (i * 10) + j +10 < 200) {
+                        if (list.get((pos_i * 10) + pos_j + (i * 10) + j + 10) != 0) {
+                            move = false;
+                        } else {
+                            j++;
+                        }
+                    } else {
+                        move = false;
+                    }
+                } else {
+                    j++;
+                }
+            }
+            i++;
+        }
 
+        return move;
     }
+
+    public boolean test(int i,int j) {
+        boolean me = false;
+        if(i< hauteur-1) {
+            if(matrice.getValues(i+1,j) == 1) {
+                me = true;
+            }
+        }
+        return me;
+    }
+
+
+
 
     public int getHauteur() {
         return hauteur;

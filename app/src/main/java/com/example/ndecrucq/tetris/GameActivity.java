@@ -1,5 +1,6 @@
 package com.example.ndecrucq.tetris;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Handler;
@@ -34,14 +35,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     int rows = 20;
     int columns = 10;
-    int speed = 200;
+    int speed = 250;
     GridView grid;
     Point size;
     MatrixAdapter adapter;
     Piece currentPiece;
     Integer currentPieceId = 0;
 
-    boolean gameIsInProgress = true;
+    Integer score = 0;
+
 
     public Piece pieceAlea() {
         Piece piece = new Piece_I();
@@ -75,16 +77,39 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         return piece;
     }
 
+    public void getPointForScore(String event) {
+        switch (event) {
+            case "new_piece":
+                score += 50;
+                break;
+            case "broke_1_line":
+                score += 100;
+                break;
+            case "broke_2_line":
+                score += 300;
+                break;
+            case "broke_3_line":
+                score += 900;
+                break;
+            case "broke_4_line":
+                score += 1200;
+                break;
+            default:
+                break;
+        }
+    }
+
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
 
         @Override
         public void run() {
 
-            if (gameIsInProgress) {
-                if (isInBottom()) {
+            if (!EndGame()) {
+                if (!currentPiece.canMove(imageIdList)) {
                     currentPieceId++;
                     currentPiece = pieceAlea();
+                    getPointForScore("new_piece");
                     pieceList.add(currentPiece);
                     adapter = new MatrixAdapter(getApplicationContext(), imageIdList, size.x, size.y);
                     grid.setAdapter(adapter);
@@ -94,10 +119,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 adapter.notifyDataSetChanged();
                 timerHandler.postDelayed(this, speed);
 
-
                 Log.i("ok", String.valueOf(pieceList.get(currentPieceId).getPos_i()));
 
-
+            }
+            else{
+                Intent intent = new Intent(GameActivity.this, EndActivity.class);
+                intent.putExtra("score", Integer.toString(score));
+                startActivity(intent);
             }
         }
     };
@@ -188,35 +216,31 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_left:
-                pieceList.get(currentPieceId).left();
+                    pieceList.get(currentPieceId).left();
                 break;
             case R.id.btn_bottom:
-                pieceList.get(currentPieceId).down();
+                if (currentPiece.canMove(imageIdList)) {
+                    pieceList.get(currentPieceId).down();
+                }
                 break;
             case R.id.btn_right:
-                pieceList.get(currentPieceId).right();
+                    pieceList.get(currentPieceId).right();
                 break;
             case R.id.btn_rotate:
-                pieceList.get(currentPieceId).rotate();
+                    pieceList.get(currentPieceId).rotate();
                 break;
         }
         update();
         adapter.notifyDataSetChanged();
     }
 
-
-    private boolean isInBottom() {
-        boolean isInBottom = false;
-        Matrix matrice = currentPiece.getMatrice();
-        for (int i = 0; i < currentPiece.getHauteur(); i++) {
-            for (int j = 0; j < currentPiece.getLargeur(); j++) {
-                if ((matrice.getM_table()[i][j] == 1) && currentPiece.getPos_i() + i + 1 >= 20) {
-                    isInBottom = true;
-                }
-
-            }
+    private boolean EndGame()
+    {
+        boolean endGame = false;
+        if(currentPiece.getPos_i() == 1 && !currentPiece.canMove(imageIdList)){
+            endGame=true;
         }
-        return isInBottom;
+        return endGame;
     }
 
 

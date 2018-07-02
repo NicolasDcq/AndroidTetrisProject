@@ -8,6 +8,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp"
+    android:background="@drawable/background"
     tools:context="com.example.ndecrucq.tetris.GameActivity">
 
     <LinearLayout
@@ -23,17 +24,15 @@
             android:id="@+id/grid_game"
             android:layout_width="wrap_content"
             android:paddingBottom="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="@dimen/marginGridGame"
+            android:layout_marginRight="@dimen/marginGridGame"
             android:paddingTop="20dp"
             android:layout_height="wrap_content"
             android:padding="2dp"
-            android:numColumns="3"
-            android:background="#8c898f"
+            android:background="@color/colorForBorderGridGame"
             android:verticalSpacing="1dp"
             android:horizontalSpacing="1dp"
-            android:stretchMode="columnWidth"
-            android:gravity="left"/>
+            android:stretchMode="columnWidth" />
 
         <LinearLayout
             android:id="@+id/buttons"

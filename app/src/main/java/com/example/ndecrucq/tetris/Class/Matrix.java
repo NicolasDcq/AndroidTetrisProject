@@ -22,7 +22,7 @@ public class Matrix {
 
     private Matrix(Matrix A) { this(A.m_table); }
 
-    public int values(int i,int j){
+    public int getValues(int i,int j){
         return m_table[i][j];
     }
 
@@ -32,10 +32,15 @@ public class Matrix {
 
     public boolean eq(Matrix B) {
         Matrix A = this;
-        if (B.m_height != A.m_height || B.m_width != A.m_width);
-        for (int i = 0; i < m_height; i++)
-            for (int j = 0; j < m_width; j++)
-                if (A.m_table[i][j] != B.m_table[i][j]) return false;
+        if (B.m_height != A.m_height || B.m_width != A.m_width){
+            return false;
+        }
+        else {
+            for (int i = 0; i < m_height; i++)
+                for (int j = 0; j < m_width; j++)
+                    if (A.m_table[i][j] != B.m_table[i][j]) return false;
+        }
+
         return true;
     }
 

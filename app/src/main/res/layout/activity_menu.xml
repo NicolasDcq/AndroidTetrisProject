@@ -5,41 +5,52 @@
     android:id="@+id/activity_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/paddingTopBottomMenu"
+    android:paddingLeft="@dimen/paddingRightLeftMenu"
+    android:paddingRight="@dimen/paddingRightLeftMenu"
+    android:paddingTop="@dimen/paddingTopBottomMenu"
     tools:context="com.example.ndecrucq.tetris.MenuActivity"
+    android:background="@drawable/background"
     android:clickable="false">
 
+
     <Button
-        android:text="Jouer"
+        android:text="@string/btn_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="78dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
         android:id="@+id/btn_play"
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="10sp"
         android:textSize="18sp"
-        android:elevation="0dp" />
-
-    <TextView
-        android:text="TETRIS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:elevation="0dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:id="@+id/textView"
-        android:textSize="72sp" />
+        android:layout_marginBottom="85dp"
+        android:background="#FFD700"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:background ="@drawable/logo"
+        android:layout_marginTop="27dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="By DECRUCQ Nicolas"
+        android:text="@string/credits"
+        android:textColor="#fff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
+        android:id="@+id/credits" />
+
 </RelativeLayout>

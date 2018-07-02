@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Tetris</string>
+    <string name="menu_title">TETRIS</string>
+    <string name="btn_play">Jouer</string>
+    <string name="credits">By DECRUCQ Nicolas</string>
+    <string name="end_title">Fin de la Partie</string>
+    <string name="score_label">Votre score:</string>
+    <string name="return_menu">Retourner au menu</string>
 </resources>

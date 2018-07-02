@@ -32,11 +32,9 @@ public class Piece_T extends Piece implements Movement, Possible_Movement {
             this.matrice = matrix_2;
         } else if (this.matrice.eq(matrix_2)) {
             this.matrice = matrix_3;
-        }
-        else if (this.matrice.eq(matrix_3)) {
+        } else if (this.matrice.eq(matrix_3)) {
             this.matrice = matrix_4;
-        }
-        else if (this.matrice.eq(matrix_4)) {
+        } else if (this.matrice.eq(matrix_4)) {
             this.matrice = matrix_1;
         }
 
